@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Role Play Practice</title>
+<style>
+:root {
+  --bg: #07102a; --bg2: #0b1736; --card: #0f1c3f; --line: rgba(255,255,255,.09);
+  --fg: #f2f5ff; --mute: #a9b4d0; --blue: #46b0ff; --green: #00e284; --ink: #00003b;
+  --display: 'Fraunces', Georgia, 'Times New Roman', serif; --body: 'Instrument Sans', 'Helvetica Neue', Arial, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font: 400 1.0625rem/1.65 var(--body); margin: 0; }
+.wrap { max-width: 72rem; margin: 0 auto; padding-inline: 1rem; }
+@media (min-width: 640px) { .wrap { padding-inline: 1.5rem; } }
+h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; line-height: 1.12; letter-spacing: -.02em; }
+h1 { font-size: clamp(2.25rem, 7vw, 4.5rem); }
+h2 { font-size: clamp(1.75rem, 4.2vw, 3rem); }
+p { margin: 0; }
+.top { padding-block: 4rem 3rem; }
+.top .intro { max-width: 46rem; margin-inline: auto; text-align: center; }
+.grad { background: linear-gradient(90deg, var(--blue), var(--green)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.lede { margin-top: 1.5rem; font-size: clamp(1.1rem, 2.4vw, 1.4rem); color: var(--mute); }
+.cta-row { margin-top: 2rem; display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; padding: .7rem 1.25rem; border-radius: .6rem; font-weight: 600; text-decoration: none; }
+.btn.go { background: var(--green); color: var(--ink); }
+.btn.go:hover { background: #00f090; }
+.btn.ghost { border: 1px solid #3b4a72; color: var(--fg); }
+.btn.ghost:hover { background: #16244d; }
+a:focus-visible, .btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+.hero { margin-top: 3.5rem; padding: 3px; border-radius: 1.1rem; background: linear-gradient(135deg, var(--blue), var(--green)); }
+.hero img { display: block; width: 100%; height: auto; border-radius: .9rem; background: var(--card); }
+.band { padding-block: 4.5rem; }
+.alt { background: var(--bg2); }
+.two { display: grid; gap: 2rem; }
+@media (min-width: 64rem) { .two { grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; } }
+.prose { display: grid; gap: 1.25rem; color: var(--mute); font-size: 1.125rem; }
+.points { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; gap: .75rem; }
+.points li { position: relative; padding-left: 1.5rem; color: #dfe6fa; }
+.points li::before { content: ''; position: absolute; left: 0; top: .6em; width: .5rem; height: .5rem; border-radius: 50%; background: var(--green); }
+.chapter { padding-block: 4.5rem; }
+.chapter:nth-of-type(odd) { background: var(--bg2); }
+.shots { margin-top: 3rem; display: grid; gap: 1.5rem; align-items: end; }
+@media (min-width: 64rem) { .shots.with-phone { grid-template-columns: minmax(0, 1fr) auto; } }
+.frame { border: 1px solid var(--line); border-radius: 1rem; overflow: hidden; background: var(--card); box-shadow: 0 24px 60px rgba(0,0,0,.35); }
+.frame img, .phone img { display: block; width: 100%; height: auto; }
+.aside { margin-top: 1.5rem; }
+@media (min-width: 64rem) { .aside { width: 66%; margin-left: auto; } }
+.phone { width: 100%; max-width: 16.25rem; margin-inline: auto; border: 1px solid var(--line); border-radius: 2rem; overflow: hidden; background: var(--card); box-shadow: 0 24px 60px rgba(0,0,0,.35); }
+.spec { margin: 3rem 0 0; display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 1rem; overflow: hidden; }
+@media (min-width: 40rem) { .spec { grid-template-columns: 1fr 1fr; } }
+.spec > div { background: var(--card); padding: 1.5rem; min-width: 0; }
+.spec dt { font-family: var(--display); font-weight: 600; font-size: 1.1rem; }
+.spec dd { margin: .5rem 0 0; color: var(--mute); }
+.flow { list-style: none; margin: 3rem 0 0; padding: 0; display: grid; gap: 1rem; counter-reset: s; }
+@media (min-width: 64rem) { .flow { grid-template-columns: repeat(4, 1fr); } }
+.flow > li { background: var(--card); border: 1px solid rgba(70,176,255,.35); border-radius: 1rem; padding: 1.5rem; }
+.flow > li:nth-child(n+3) { border-color: rgba(0,226,132,.45); }
+.flow h3 { font-size: 1.15rem; }
+.flow ul { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .75rem; color: var(--mute); font-size: 1rem; }
+.outs { margin-top: 1rem; display: grid; gap: 1rem; color: var(--mute); }
+@media (min-width: 40rem) { .outs { grid-template-columns: 1fr 1fr; } }
+.outs p { border: 1px solid rgba(0,226,132,.35); border-radius: 1rem; padding: 1.25rem; background: rgba(15,28,63,.6); }
+.outs p + p { border-color: rgba(70,176,255,.35); }
+.outs b { color: var(--fg); }
+h3.sub { margin-top: 4.5rem; font-size: clamp(1.4rem, 3vw, 2rem); }
+.final { padding-block: 4.5rem; }
+.card { border-radius: 1.1rem; padding: 1px; background: linear-gradient(135deg, rgba(70,176,255,.6), rgba(255,255,255,.1), rgba(0,226,132,.6)); }
+.card > div { border-radius: 1.05rem; background: var(--card); padding: 2.5rem 1.5rem; display: grid; gap: 1.5rem; }
+@media (min-width: 64rem) { .card > div { padding: 4rem 3.5rem; grid-template-columns: 1fr auto; align-items: end; } }
+.card p { color: var(--mute); max-width: 52ch; margin-top: 1rem; font-size: 1.125rem; }
+nav.jump { margin-top: 2.5rem; display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; }
+nav.jump a { color: var(--mute); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: .3rem .9rem; font-size: .95rem; }
+nav.jump a:hover { color: var(--fg); border-color: #3b4a72; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&display=swap"></head><body>
+
+<header class="top"><div class="wrap">
+<div class="intro">
+<h1>Practice the conversation <span class="grad">before it counts.</span></h1>
+<p class="lede">Learners rehearse the hard calls with AI customers, buying committees, and colleagues, by text, voice, camera, and screen share. Then they get coaching that points to the exact moment it came from.</p>
+<nav class="jump" aria-label="Sections"><a href="#one-on-one">One on one</a><a href="#panel">Panels</a><a href="#together">Co-practice</a><a href="#demo">Demos</a><a href="#feedback">Feedback</a><a href="#authoring">Authoring</a><a href="#practice-types">Practice types</a><a href="#how-it-works">How it works</a></nav>
+</div>
+<div class="hero"><img src="screenshots/role-play/demo-live-desktop.webp" alt="A learner presenting a product demo on camera, with their screen shared and an AI prospect listening" width="2880" height="1800"></div>
+</div></header>
+
+<section class="band"><div class="wrap"><div class="two">
+<h2>Knowing is not the same as doing</h2>
+<div class="prose">
+<p>Most training stops at knowing. A rep watches the objection-handling video, passes the quiz, and walks into a renewal call where the CFO interrupts them twice in the first minute. Nothing in the course prepared them for that, because nothing in the course talked back.</p>
+<p>Skills like discovery, negotiation, and hard feedback are built the way any skill is built: by doing them, getting specific feedback, and doing them again. Role play makes that loop cheap enough to run every week, private enough that people actually try, and honest enough that the feedback is worth reading.</p>
+</div></div></div></section>
+
+<section id="one-on-one" class="chapter"><div class="wrap">
+<div class="two"><h2>Someone who pushes back</h2><div><div class="prose"><p>A quiz can tell you whether a rep knows the refund policy. It cannot tell you whether they can hold that policy while an upset customer talks over them. That only shows up in the conversation itself.</p><p>Each scenario puts the learner across from a character with a goal of their own, a reason to resist, and a memory of everything said so far. Learners type or talk, on a laptop or a phone, and the character answers the way a real person in that seat would.</p></div>
+<ul class="points"><li>Text or live voice, chosen when the run starts</li><li>Characters stay in role and react to what the learner actually says</li><li>Text and voice runs work on a phone as well as a desktop</li></ul></div></div><div class="shots with-phone"><div class="frame"><img class="" src="screenshots/role-play/voice-run-desktop.webp" alt="A learner on a live voice call with an AI customer, with captions of both sides of the conversation" loading="lazy"></div><div class="phone"><img class="" src="screenshots/role-play/voice-run-phone.webp" alt="The same voice practice run on a phone" loading="lazy"></div></div><div class="frame aside"><img class="" src="screenshots/role-play/text-run-desktop.webp" alt="A text practice run where a support agent handles a refund demand" loading="lazy"></div></div></section>
+<section id="panel" class="chapter"><div class="wrap">
+<div class="two"><h2>The whole room, not one bot</h2><div><div class="prose"><p>Real deals are rarely decided by one person. A renewal call can have a CFO watching cost, an IT lead watching security, and a manager who has to get forty people to use the thing.</p><p>Panels put up to four characters in one call. Each one has its own priorities and its own voice, and they take turns the way people in a meeting do. Nobody answers anybody else, so the learner has to run the room: name who they are speaking to, and close every open question before the call ends.</p></div>
+<ul class="points"><li>Up to four characters in one call, each with distinct priorities</li><li>Every character speaks in a voice that fits their name</li><li>Turn-taking keeps the floor with the learner</li></ul></div></div><div class="shots with-phone"><div class="frame"><img class="" src="screenshots/role-play/panel-call-desktop.webp" alt="A practice call with a four-person buying committee, each speaker labeled" loading="lazy"></div><div class="phone"><img class="" src="screenshots/role-play/panel-call-phone.webp" alt="The buying committee call on a phone" loading="lazy"></div></div></div></section>
+<section id="together" class="chapter"><div class="wrap">
+<div class="two"><h2>Practice with a colleague</h2><div><div class="prose"><p>Some skills are easier to build with another person in the room. Learners can invite a teammate by name or with a link, then take on the same scenario together, by text or voice, from two devices or two cities.</p><p>Each person keeps a role, so a rep and their sales engineer can rehearse the call they have next week, with the AI playing the customer. Or the AI can step out of the scene entirely and judge, while two colleagues practice on each other.</p></div>
+<ul class="points"><li>Invite by name or share a link</li><li>Each person holds a role, shown next to their name in the call</li><li>Peer practice with an AI judge, and no AI character at all</li></ul></div></div><div class="shots"><div class="frame"><img class="" src="screenshots/role-play/copractice-voice-desktop.webp" alt="Two colleagues on a shared practice call, each labeled with their role" loading="lazy"></div></div><div class="frame aside"><img class="" src="screenshots/role-play/copractice-results-desktop.webp" alt="Results for a pair, including how the two people shared the floor" loading="lazy"></div></div></section>
+<section id="demo" class="chapter"><div class="wrap">
+<div class="two"><h2>Show the product, not a slide about it</h2><div><div class="prose"><p>Some conversations are mostly show and tell. In demo practice, the learner turns on their camera, shares their screen, and walks an AI prospect through the product. The prospect watches what is on the screen and asks about it, the way a real buyer would. Colleagues can join as attendees.</p><p>It also works the other way around. In a fix-the-pitch scenario, the AI is the seller and shares its own screen, and somewhere in the pitch are mistakes the author planted. The learner has to catch them, on the screen or in what was said, and explain what is wrong.</p></div>
+<ul class="points"><li>Webcam and screen share, with attendees in the room</li><li>The prospect sees the shared screen and asks about it</li><li>Fix the pitch: find the planted mistakes in a pitch the AI gives</li></ul></div></div><div class="shots"><div class="frame"><img class="" src="screenshots/role-play/demo-live-desktop.webp" alt="A demo practice run with the presenter on camera and their product shared on screen" loading="lazy"></div></div><div class="frame aside"><img class="" src="screenshots/role-play/fixpitch-screen-desktop.webp" alt="A fix-the-pitch run where the AI seller shares a pricing page" loading="lazy"></div></div></section>
+<section id="feedback" class="chapter"><div class="wrap">
+<div class="two"><h2>Feedback you can check</h2><div><div class="prose"><p>Generic feedback is easy to ignore. &quot;Work on discovery&quot; gives a learner nothing to do on Monday. So every point of coaching here is tied to a specific moment: the line they said, or the frame of the screen they were showing. One click plays it back.</p><p>Grading and coaching are kept apart on purpose. Goals are judged against the scenario author’s rubric, and only that judgment counts toward mastery. Coaching, including how the learner came across on camera and voice, is there to help them improve, and it never becomes a score.</p></div>
+<ul class="points"><li>Every coaching point cites the moment it came from</li><li>Goals the learner never reached are kept separate from goals they missed</li><li>How they came across on camera and voice, as coaching, never as a grade</li></ul></div></div><div class="shots"><div class="frame"><img class="" src="screenshots/role-play/result-coaching-desktop.webp" alt="A results page with coaching that cites specific moments from the conversation" loading="lazy"></div></div><div class="frame aside"><img class="" src="screenshots/role-play/result-moment-desktop.webp" alt="A cited moment expanded to show exactly what the learner said" loading="lazy"></div></div></section>
+<section id="authoring" class="chapter"><div class="wrap">
+<div class="two"><h2>Your scenarios, your standard</h2><div><div class="prose"><p>The people who know what a great call sounds like are the ones running your teams. Scenarios are written in plain language: who the learner is talking to, what that person wants, and what a strong performance looks like.</p><p>Authors can add panel members, pick a voice for each character or let the voice follow the name, attach the screens an AI seller will share, and record an example run that shows the standard. Scenarios can live inside a course, or learners can find them on their own.</p></div>
+<ul class="points"><li>Plain-language scenarios, panels, and planted mistakes</li><li>Pick each character’s voice, or match it to the name</li><li>An example run and your own playbook guide the coaching</li></ul></div></div><div class="shots"><div class="frame"><img class="" src="screenshots/role-play/author-panel-desktop.webp" alt="The scenario editor with three panel members and a voice picker for each" loading="lazy"></div></div><div class="frame aside"><img class="" src="screenshots/role-play/author-voice-picker.webp" alt="The voice picker open, with the option to match the voice to the character name" loading="lazy"></div></div></section>
+
+<section id="practice-types" class="band"><div class="wrap"><div class="two"><h2>Every kind of practice</h2>
+<p class="prose">These are the formats an author can build today. One scenario picks one format, and a course can mix as many as it needs.</p></div>
+<dl class="spec"><div><dt>Text, one on one</dt><dd>The learner types to one AI character. Available on any device, with no microphone needed.</dd></div><div><dt>Voice, one on one</dt><dd>A live spoken call with one AI character. The character can look up course content and ask the learner how confident they are.</dd></div><div><dt>Panel: buying committee</dt><dd>Two to four characters on one call, each with its own name, role, priority, and voice.</dd></div><div><dt>Panel: pre-mortem</dt><dd>The same panel format, set up as a pre-mortem.</dd></div><div><dt>Co-practice with an AI character</dt><dd>Two colleagues share one scenario with an AI playing the other side. Each person holds a role with its own brief.</dd></div><div><dt>Co-practice with an AI judge</dt><dd>Two colleagues practice on each other. The AI plays no character and judges the exchange against the rubric.</dd></div><div><dt>Demo</dt><dd>The learner presents on camera and shares their screen to an AI prospect. Colleagues can join as attendees.</dd></div><div><dt>Fix the pitch</dt><dd>The AI gives a pitch and shares its screen. The author plants five mistakes, some in what is said and some on the screen, and the learner has to find them.</dd></div><div><dt>Examiner</dt><dd>The character probes with follow-up questions that adapt to each answer, and a stopping rule decides when it has heard enough.</dd></div><div><dt>Drill</dt><dd>A short rep capped at two minutes.</dd></div><div><dt>Exam role play</dt><dd>A role-play question inside a proctored exam. An interrupted run is held for review and is never scored as if it finished.</dd></div></dl></div></section>
+
+<section id="scenario-controls" class="band alt"><div class="wrap"><div class="two"><h2>What an author can tune</h2>
+<p class="prose">Any format can be tightened or loosened with these settings, so the same skill can be practiced at a beginner’s pace or under real pressure.</p></div>
+<dl class="spec"><div><dt>Difficulty tier</dt><dd>Foundational, proficient, or expert.</dd></div><div><dt>Adversary intensity</dt><dd>Low, moderate, or high pushback from the character.</dd></div><div><dt>Register</dt><dd>Formal, direct, indirect, or hierarchical, so a scenario can match how a culture or a boss actually talks.</dd></div><div><dt>Hidden facts</dt><dd>Information the character holds back until the learner asks the right question.</dd></div><div><dt>Timed events</dt><dd>A new fact or complication that lands partway through the call.</dd></div><div><dt>Constraints</dt><dd>A time limit, forbidden phrases, a cap on turn length, or a limit on how many offers the learner can make.</dd></div><div><dt>Character memory</dt><dd>A character can remember the learner from earlier runs.</dd></div><div><dt>Live coach</dt><dd>An optional whisper coach that nudges the learner during the call. It is never used in exams.</dd></div><div><dt>Language and voice</dt><dd>Any language the scenario is written in, with 30 named voices to choose from.</dd></div><div><dt>Rubric</dt><dd>Objectives with criteria that are graded automatically or by a person, judged on speech, on screen, or on both.</dd></div></dl></div></section>
+
+<section id="how-it-works" class="band"><div class="wrap"><div class="two"><h2>How it works</h2>
+<div class="prose"><p>Every run happens in a live room. The characters hear the learner and answer in real time. Alongside them, a separate listener follows every voice in the room and writes down who said what and when, and keeps periodic still frames of anything on camera or on a shared screen.</p>
+<p>When the run ends, the transcript is graded against the scenario’s goals, with each verdict tied to the lines and frames that support it. Coaching is written from the same record. The mastery result goes to the learner’s profile, and the coaching goes to the learner.</p></div></div>
+<ol class="flow"><li><h3>The live room</h3><ul><li>Learners talk, type, show their camera, and share screens</li><li>Characters answer in real time, one at a time</li></ul></li><li><h3>The listener</h3><ul><li>Writes down who said what, and when</li><li>Keeps still frames from cameras and shared screens</li></ul></li><li><h3>Grading</h3><ul><li>Each goal judged against the author’s rubric</li><li>Every verdict cites the lines and frames behind it</li></ul></li><li><h3>Coaching</h3><ul><li>What to focus on next time, and what worked</li><li>How the learner came across, never as a score</li></ul></li></ol>
+<div class="outs"><p><b>Goes to the record.</b> Only the graded goals count toward mastery.</p><p><b>Goes to the learner.</b> Coaching links back to each moment, so they can replay it and try again.</p></div>
+<h3 class="sub">The stack</h3>
+<dl class="spec"><div><dt>Live conversation</dt><dd>The characters run on Google Gemini Live, which takes in the learner’s audio and speaks back in the same stream. There is no separate text-to-speech step. Voice runs use LiveKit for real-time audio and video over WebRTC, and a Python agent built on LiveKit Agents plays each character.</dd></div><div><dt>Avatars</dt><dd>AI characters are voice only today. The stack can give them a live video face through LiveAvatar, but the cost per minute is high, so we have not turned it on.</dd></div><div><dt>Turn-taking</dt><dd>Solo calls use Gemini’s own speech detection. Demo and panel calls use manual floor control, so characters take the floor in turn.</dd></div><div><dt>Transcript</dt><dd>A second agent joins each room without publishing audio. It runs Google Cloud Speech on each learner’s own audio track, so every line is attributed to a person by construction, and it uses Google’s word timings to place each word on the timeline.</dd></div><div><dt>Audio cleanup</dt><dd>Each learner track passes through a noise suppressor. It reduces background noise. It does not isolate a voice, so a TV in the room is turned down and not removed.</dd></div><div><dt>Camera and screen</dt><dd>The evaluator saves still frames from the camera and from a shared screen. During demos, a face landmark model reads the presenter’s delivery from the camera. It feeds coaching only.</dd></div><div><dt>Grading</dt><dd>After the call, Gemini grades the transcript against the author’s rubric. Each verdict cites the lines and frames behind it. Only this result counts toward mastery.</dd></div><div><dt>Coaching</dt><dd>Coaching is a separate pass over the same record. Each point links to a moment, and none of it becomes a score.</dd></div><div><dt>Storage</dt><dd>Runs, turns, events, coaching, and scenario versions live in a Postgres database. Frames sit in private storage buckets and are purged on a schedule.</dd></div><div><dt>Limits</dt><dd>Co-practice rooms count humans only, three by default, and AI characters do not take a seat. Voice has a per-organization quota and an admin kill switch. Text is always available when voice is not.</dd></div></dl></div></section>
+</body></html>
